@@ -57,6 +57,9 @@ public class Book implements Serializable {
     @Size(min = 2, max = 20, message = "language length not valid, to short/long or empty")
     private String language;
 
+    //Cool hemmasnickrad validerare
     @Category
     private String category;
+
+    private String lendedUserId;
 }
