@@ -3,10 +3,13 @@ package com.sindre.inl2.demo.entities;
 import lombok.Data;
 import org.hibernate.validator.constraints.UniqueElements;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.security.core.GrantedAuthority;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
+import java.util.List;
 
 @Data
 public class User {
@@ -24,7 +27,7 @@ public class User {
     private String userId;
 
     @NotEmpty
-    @UniqueElements
+    @Indexed(unique = true)
     @Size(min = 3, max = 50, message = "Username not valid, to short/long or empty")
     private String username;
 
@@ -32,7 +35,7 @@ public class User {
     @Size(min = 1, max = 40, message = "Password to not valid, to long or empty")
     private String password;
 
-    private Boolean isLibrarian;
-
     private ArrayList<Book> lendedBooks;
+
+    private List<String> acl;
 }

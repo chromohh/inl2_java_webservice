@@ -10,6 +10,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController // Rest API
@@ -20,8 +21,8 @@ public class BookController {
     @Autowired
     private BookService bookService;
 
-    @GetMapping
-    public ResponseEntity<List<Book>> findAllUsers(@RequestParam(required = false) String title){
+    @GetMapping("/open")
+    public ResponseEntity<List<Book>> findAllBooks(@RequestParam(required = false) String title){
         return ResponseEntity.ok(bookService.findAll(title));
     }
 
@@ -32,7 +33,7 @@ public class BookController {
 
     @PutMapping("/admin/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void update(@PathVariable String id, @ModelAttribute Book book){
+    public void update(@PathVariable String id, @ModelAttribute @Valid Book book){
         bookService.update(id, book);
     }
 

@@ -45,11 +45,13 @@ public class BookService {
 
     @PutMapping
     public Book save(Book book){
+        log.info("Saving");
         return bookRepository.save(book);
     }
 
     @PutMapping
-    public void update(String id, @Valid Book book){
+    public void update(String id, Book book){
+        log.info("Updating book");
         if(!bookRepository.existsById(id)){
             log.error(String.format("Could not find user by id ", id));
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,
@@ -60,6 +62,8 @@ public class BookService {
 
         bookRepository.save(book);
     }
+
+
 
     @DeleteMapping
     public void delete(String id){
@@ -72,7 +76,7 @@ public class BookService {
     }
 
     public Boolean isCategoryExisting(String category){
-        //Borde nog flytta listan.
+        //Borde nog flytta listan till databasen.
         List<String> categories = Arrays.asList("",
                 "Fantasy",
                 "Politics",
