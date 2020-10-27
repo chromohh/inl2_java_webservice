@@ -14,10 +14,9 @@ import java.util.List;
 @Data
 public class User {
 
-    public User(@NotEmpty @UniqueElements @Size(min = 3, max = 50, message = "Username not valid, to short/long or empty") String username, @NotEmpty @Size(min = 1, max = 40, message = "Password to not valid, to long or empty") String password, ArrayList<Book> lendedBooks) {
+    public User(@NotEmpty @Size(min = 3, max = 50, message = "Username not valid, to short/long or empty") String username, @NotEmpty @Size(min = 1, max = 40, message = "Password to not valid, to long or empty") String password) {
         this.username = username;
         this.password = password;
-        this.lendedBooks = lendedBooks;
     }
 
     public User() {
@@ -35,7 +34,7 @@ public class User {
     @Size(min = 1, max = 40, message = "Password to not valid, to long or empty")
     private String password;
 
-    private ArrayList<Book> lendedBooks;
+    private List<Book> lendedBooks;
 
     private List<String> acl;
 }

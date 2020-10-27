@@ -53,17 +53,15 @@ public class BookService {
     public void update(String id, Book book){
         log.info("Updating book");
         if(!bookRepository.existsById(id)){
-            log.error(String.format("Could not find user by id ", id));
+            log.error(String.format("Could not find book by id ", id));
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,
-                    String.format("Could not find the user by id ", id));
+                    String.format("Could not find the book by id ", id));
         }
 
         book.setId(id);
 
         bookRepository.save(book);
     }
-
-
 
     @DeleteMapping
     public void delete(String id){

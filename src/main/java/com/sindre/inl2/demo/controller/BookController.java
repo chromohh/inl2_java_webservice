@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
@@ -26,18 +27,21 @@ public class BookController {
         return ResponseEntity.ok(bookService.findAll(title));
     }
 
-    @PostMapping("/admin")
-    public Book save(@Validated @ModelAttribute Book book){
-        return bookService.save(book);
+    @Secured({"ROLE_ADMIN"})
+    @PostMapping
+    public ResponseEntity<Book> save(@Validated @ModelAttribute Book book){
+        return ResponseEntity.ok(bookService.save(book));
     }
 
-    @PutMapping("/admin/{id}")
+    @Secured({"ROLE_ADMIN"})
+    @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void update(@PathVariable String id, @ModelAttribute @Valid Book book){
         bookService.update(id, book);
     }
 
-    @DeleteMapping("/admin/{id}")
+    @Secured({"ROLE_ADMIN"})
+    @DeleteMapping("/id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable String id){
         bookService.delete(id);
