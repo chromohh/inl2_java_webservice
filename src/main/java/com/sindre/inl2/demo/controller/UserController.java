@@ -37,12 +37,14 @@ public class UserController {
 
     @Secured({"ROLE_USER", "ROLE_ADMIN"})
     @PostMapping("/lend/{bookId}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public ResponseEntity<Book> lendBook(@PathVariable String bookId){
         return ResponseEntity.ok(userService.lendBook(bookId));
     }
 
     @Secured({"ROLE_USER", "ROLE_ADMIN"})
     @PostMapping("/return/{bookId}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public ResponseEntity<Book> returnBook(@PathVariable String bookId){
         return ResponseEntity.ok(userService.returnBook(bookId));
     }
