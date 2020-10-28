@@ -1,6 +1,6 @@
 package com.sindre.inl2.demo.config;
 
-import com.sindre.inl2.demo.services.NyUserDetailService;
+import com.sindre.inl2.demo.services.MyUserDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,7 +21,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private AuthenticationEntryPoint entryPoint;
 
     @Autowired
-    private NyUserDetailService userDetailService;
+    private MyUserDetailService userDetailService;
 
     @Override
     protected void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {

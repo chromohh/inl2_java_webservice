@@ -29,7 +29,7 @@ public class UserController {
         return ResponseEntity.ok(userService.save(user));
     }
 
-    @Secured({"ROLE_USER", "ROLE_ADMIN"})
+    @Secured({"ROLE_ADMIN"})
     @GetMapping
     public ResponseEntity<List<User>> findAll(@RequestParam(required = false) String name){
         return ResponseEntity.ok(userService.findAll(name));
