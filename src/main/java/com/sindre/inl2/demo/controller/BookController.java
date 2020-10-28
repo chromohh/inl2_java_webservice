@@ -23,8 +23,8 @@ public class BookController {
     private BookService bookService;
 
     @GetMapping("/open")
-    public ResponseEntity<List<Book>> findAllBooks(@RequestParam(required = false) String title){
-        return ResponseEntity.ok(bookService.findAll(title));
+    public ResponseEntity<List<Book>> findAllBooks(@RequestParam(required = false) String title, @RequestParam(required = false) Boolean sortByTitle){
+        return ResponseEntity.ok(bookService.findAll(title, sortByTitle));
     }
 
     @Secured({"ROLE_ADMIN"})

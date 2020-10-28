@@ -28,7 +28,7 @@ public class BookService {
 
     //todo
     @GetMapping
-    public List<Book> findAll(String title){
+    public List<Book> findAll(String title, Boolean sortByTitle){
         log.info("Requesting all books, or matching search");
         var books = bookRepository.findAll();
 
@@ -39,7 +39,12 @@ public class BookService {
                             .contains(title.toLowerCase()))
                     .collect(Collectors.toList());
         }
-
+        if(sortByTitle!=null){
+            log.info("Sorting by title");
+            books = books.stream()
+                    .sorted(Comparator.comparing(Book::getTitle, String.CASE_INSENSITIVE_ORDER))
+                    .collect(Collectors.toList());
+        }
         return books;
     }
 
