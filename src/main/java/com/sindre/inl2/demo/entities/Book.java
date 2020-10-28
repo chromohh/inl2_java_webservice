@@ -61,5 +61,5 @@ public class Book implements Serializable {
     @Category
     private String category;
 
-    private String lendedUserId;
+    private String lendedUser;
 }
