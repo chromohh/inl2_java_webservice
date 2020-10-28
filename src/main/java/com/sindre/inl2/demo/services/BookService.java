@@ -51,6 +51,7 @@ public class BookService {
     @PutMapping
     public Book save(Book book){
         log.info("Saving");
+        book.setLendedUser("none");
         return bookRepository.save(book);
     }
 

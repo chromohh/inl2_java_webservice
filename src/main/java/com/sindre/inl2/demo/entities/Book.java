@@ -28,6 +28,7 @@ public class Book implements Serializable {
         this.releaseDate = releaseDate;
         this.language = language;
         this.category = category;
+        this.lendedUser = "none";
     }
 
     public Book() {

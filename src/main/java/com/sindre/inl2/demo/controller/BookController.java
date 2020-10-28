@@ -41,7 +41,7 @@ public class BookController {
     }
 
     @Secured({"ROLE_ADMIN"})
-    @DeleteMapping("/id}")
+    @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable String id){
         bookService.delete(id);

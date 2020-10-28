@@ -87,12 +87,11 @@ public class UserService {
         User user = userRepository.findByUsername(currentPrincipalName).get();
         Book book = bookRepository.findById(bookId).get();
 
-        if(user.getLendedBooks().contains(book) || book.getLendedUser().equals(null) || book.getLendedUser().equals("None")){
+        if(!book.getLendedUser().equals("none")){
             log.error(String.format("Book already lended", book.getTitle()));
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
                     String.format("Book already lended ", book.getTitle()));
         }
-
 
         book.setLendedUser(currentPrincipalName);
         bookRepository.save(book);
