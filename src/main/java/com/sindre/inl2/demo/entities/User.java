@@ -34,7 +34,7 @@ public class User {
     @Size(min = 1, max = 40, message = "Password to not valid, to long or empty")
     private String password;
 
-    private List<Book> lendedBooks = new ArrayList<Book>();
+    private List<Book> lendedBooks = new ArrayList<>();
 
     private List<String> acl;
 }

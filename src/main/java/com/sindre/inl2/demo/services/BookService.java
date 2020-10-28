@@ -29,7 +29,7 @@ public class BookService {
     //todo
     @GetMapping
     public List<Book> findAll(String title, Boolean sortByTitle){
-        log.info("Requesting all books, or matching search");
+        log.info("Requesting all books, or matching search, maybe even filtering");
         var books = bookRepository.findAll();
 
         if(title!=null){
@@ -70,10 +70,11 @@ public class BookService {
 
     @DeleteMapping
     public void delete(String id){
+        log.info("deleting book");
         if(!bookRepository.existsById(id)){
             throw new ResponseStatusException(
                     HttpStatus.NOT_FOUND,
-                    String.format("Could not find user by id" + id));
+                    String.format("Could not find book by id" + id));
         }
         bookRepository.deleteById(id);
     }

@@ -131,9 +131,9 @@ public class UserService {
         Book book = bookRepository.findById(bookId).get();
 
         if(userRepository.findByUsername(currentPrincipalName).get().getLendedBooks().stream().noneMatch(b -> b.getId().equals(bookId))){
-            log.error(String.format("User has not lendend book", book.getTitle()));
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND,
-                    String.format("User has not lendend book: ", book.getTitle()));
+            log.error(String.format("User has not lent book", book.getTitle()));
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
+                    String.format("User has not lent book: ", book.getTitle()));
         }
 
 

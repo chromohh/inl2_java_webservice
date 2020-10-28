@@ -20,8 +20,6 @@ import java.util.List;
 @RequestMapping("/api/v1/users")
 public class UserController {
     @Autowired
-    private BookService bookService;
-    @Autowired
     private UserService userService;
 
     @PostMapping("/open")
